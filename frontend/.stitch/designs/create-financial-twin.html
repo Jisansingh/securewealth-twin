@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SecureWealth Twin | Create Financial Twin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#ef4343",
+                "background-light": "#f8f6f6",
+                "background-dark": "#221010",
+              },
+              fontFamily: {
+                "display": ["Inter"]
+              },
+              borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+          },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #4a2a2a;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased font-display">
+<div class="flex min-h-screen overflow-x-hidden">
+<!-- Sidebar -->
+<aside class="w-64 border-r border-primary/10 bg-background-light dark:bg-background-dark flex flex-col fixed h-full z-50">
+<div class="p-6">
+<div class="flex items-center gap-3 mb-8">
+<div class="h-10 w-10 bg-primary rounded-lg flex items-center justify-center text-white shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined">shield_person</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-slate-900 dark:text-slate-100 text-base font-bold leading-tight">SecureWealth</h1>
+<p class="text-primary text-xs font-semibold tracking-wider uppercase">Cyber-Twin</p>
+</div>
+</div>
+<nav class="space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-primary/10 hover:text-primary rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined text-[22px]">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 bg-primary/10 text-primary rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">person_add</span>
+<span class="text-sm font-medium">Financial Twin</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-primary/10 hover:text-primary rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-[22px]">security</span>
+<span class="text-sm font-medium">Security Vault</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-primary/10 hover:text-primary rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-[22px]">account_balance_wallet</span>
+<span class="text-sm font-medium">Assets</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-primary/10 hover:text-primary rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-[22px]">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</nav>
+</div>
+<div class="mt-auto p-6 space-y-4">
+<div class="p-4 bg-primary/5 rounded-xl border border-primary/10">
+<p class="text-xs font-bold text-primary uppercase tracking-widest mb-1">Protection Status</p>
+<p class="text-sm text-slate-400 mb-3">Enterprise-grade encryption active.</p>
+<button class="w-full bg-primary hover:bg-primary/90 text-white text-xs font-bold py-2 rounded transition-all">
+                        Upgrade Shield
+                    </button>
+</div>
+<div class="flex items-center gap-3 px-1">
+<div class="h-8 w-8 rounded-full bg-slate-800 border border-primary/20 overflow-hidden">
+<img alt="Profile" data-alt="User profile avatar circle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3BYdIYdTLrYWndqX4x111HvLCrsQ54Yg4o3hdj3Vm4iLb2c3gwzdH33952lAx6ydrjZU-hrP0tDoCDOI2N1CVVI5oOF_DuP6NAj1ps5-Wc_oWucrx6Zkyyqj33GsswIlIp52CNrERGOGshDHHff3U_txO0hJnkbNIF1vHX8U2WNn2X7b5JQ7VRaSMPy7ZlablXuMotvIvw910Fz-PPBQMYoh6LLat74JwJICG6wS8f0zklAm2rxwu0JcTmAlhkBJiaobsBIDK2ZY"/>
+</div>
+<div class="flex flex-col">
+<p class="text-xs font-bold">Alex Chen</p>
+<p class="text-[10px] text-slate-500 uppercase tracking-tighter">Pro Tier Account</p>
+</div>
+<span class="material-symbols-outlined ml-auto text-slate-500 cursor-pointer">logout</span>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 ml-64 p-8 lg:p-12">
+<header class="flex flex-wrap justify-between items-start gap-6 mb-12">
+<div class="max-w-2xl">
+<h2 class="text-4xl font-black text-slate-900 dark:text-slate-100 tracking-tight mb-3">Initialize Financial Twin</h2>
+<p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">
+                        Create your AI-driven financial replica for real-time monitoring and advanced risk simulation. 
+                        Your twin acts as a digital shield against market volatility.
+                    </p>
+</div>
+<div class="flex gap-3">
+<button class="px-5 py-2.5 rounded-lg border border-primary/20 text-slate-900 dark:text-slate-100 font-bold text-sm hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                        Security Protocol
+                    </button>
+<button class="px-5 py-2.5 rounded-lg bg-primary text-white font-bold text-sm shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all">
+                        Begin Sync
+                    </button>
+</div>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Form Section -->
+<div class="lg:col-span-2 space-y-8">
+<section class="bg-white dark:bg-primary/5 rounded-2xl border border-slate-200 dark:border-primary/10 p-8">
+<div class="flex items-center gap-2 mb-6 border-b border-slate-200 dark:border-primary/10 pb-4">
+<span class="material-symbols-outlined text-primary">fingerprint</span>
+<h3 class="text-xl font-bold">Personal Identity &amp; Parameters</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="md:col-span-2">
+<label class="block text-sm font-bold text-slate-600 dark:text-slate-400 mb-2">Legal Full Name</label>
+<input class="w-full bg-slate-100 dark:bg-background-dark border-none rounded-xl h-14 px-4 text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-primary transition-all placeholder:text-slate-500" placeholder="Enter your full legal identity" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-bold text-slate-600 dark:text-slate-400 mb-2">Date of Birth</label>
+<input class="w-full bg-slate-100 dark:bg-background-dark border-none rounded-xl h-14 px-4 text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-primary transition-all" placeholder="MM/DD/YYYY" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-bold text-slate-600 dark:text-slate-400 mb-2">Nationality</label>
+<select class="w-full bg-slate-100 dark:bg-background-dark border-none rounded-xl h-14 px-4 text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-primary transition-all">
+<option>United States</option>
+<option>United Kingdom</option>
+<option>European Union</option>
+<option>Singapore</option>
+</select>
+</div>
+</div>
+</section>
+<section class="bg-white dark:bg-primary/5 rounded-2xl border border-slate-200 dark:border-primary/10 p-8">
+<div class="flex items-center gap-2 mb-6 border-b border-slate-200 dark:border-primary/10 pb-4">
+<span class="material-symbols-outlined text-primary">hub</span>
+<h3 class="text-xl font-bold">Data Connectivity</h3>
+</div>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-4 bg-slate-100 dark:bg-background-dark rounded-xl border border-transparent hover:border-primary/20 transition-all cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="h-10 w-10 rounded bg-blue-600 flex items-center justify-center text-white">
+<span class="material-symbols-outlined">account_balance</span>
+</div>
+<div>
+<p class="font-bold">Primary Banking</p>
+<p class="text-xs text-slate-500 uppercase tracking-tighter">Plaid Protocol</p>
+</div>
+</div>
+<button class="text-primary text-sm font-bold flex items-center gap-1 hover:underline">
+                                    Link Account <span class="material-symbols-outlined text-sm">open_in_new</span>
+</button>
+</div>
+<div class="flex items-center justify-between p-4 bg-slate-100 dark:bg-background-dark rounded-xl border border-transparent hover:border-primary/20 transition-all cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="h-10 w-10 rounded bg-orange-500 flex items-center justify-center text-white">
+<span class="material-symbols-outlined">currency_bitcoin</span>
+</div>
+<div>
+<p class="font-bold">Cold Storage / Crypto</p>
+<p class="text-xs text-slate-500 uppercase tracking-tighter">Web3 Auth</p>
+</div>
+</div>
+<button class="text-primary text-sm font-bold flex items-center gap-1 hover:underline">
+                                    Connect <span class="material-symbols-outlined text-sm">open_in_new</span>
+</button>
+</div>
+</div>
+</section>
+</div>
+<!-- Info Cards Section -->
+<div class="space-y-6">
+<div class="bg-gradient-to-br from-primary to-primary/60 rounded-2xl p-6 text-white shadow-xl">
+<span class="material-symbols-outlined mb-4 text-4xl">verified_user</span>
+<h4 class="text-xl font-bold mb-2">Zero-Knowledge Proof</h4>
+<p class="text-white/80 text-sm leading-relaxed mb-4">
+                            Your twin uses ZK-proofs to verify transactions without exposing sensitive PII data to third parties.
+                        </p>
+<div class="flex items-center gap-2">
+<div class="h-2 flex-1 bg-white/20 rounded-full overflow-hidden">
+<div class="h-full bg-white w-2/3 rounded-full"></div>
+</div>
+<span class="text-[10px] font-bold">67% SECURE</span>
+</div>
+</div>
+<div class="bg-white dark:bg-primary/5 rounded-2xl border border-slate-200 dark:border-primary/10 p-6">
+<h4 class="font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">bolt</span>
+                            System Health
+                        </h4>
+<div class="space-y-4">
+<div class="flex justify-between items-center text-sm">
+<span class="text-slate-500">Node Sync</span>
+<span class="text-emerald-500 font-bold">Online</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-slate-500">Latency</span>
+<span class="text-emerald-500 font-bold">12ms</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-slate-500">Encryption Level</span>
+<span class="text-primary font-bold">AES-256</span>
+</div>
+</div>
+</div>
+<div class="relative rounded-2xl overflow-hidden h-48 border border-primary/10">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Abstract cyber security blue and red lines pattern" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCwk3s_rTWJLvRTyTllSJ1CpdWNzMKIViBtOVZFrS7ZAb9goc7vB-ihHoJ0BHHUcM7I9gf8udW07uLYNTKg5sWUSinAPR5Q8IFEslPq8agvm7bLu9u3rq5Eodx6KA7YM99MkczbxMyUiJdVyFU52fBqyf7y3Px_6SMLDe77Pnbyv68Rci8LoH_UQiJIZANrV_YjcxDoabGvnXuYYQQmVOJJy8MIKIqMvpSJzriDBvg8flaSuIQ9o5SqTfymSQXN-1cCNkXoqRyQDpU');"></div>
+<div class="absolute inset-0 bg-background-dark/80 flex flex-col justify-end p-6">
+<p class="text-xs font-bold text-primary uppercase tracking-widest mb-1">Global Monitoring</p>
+<p class="text-sm font-medium">Monitoring 2.4k asset types in 150+ regions.</p>
+</div>
+</div>
+</div>
+</div>
+<footer class="mt-12 pt-8 border-t border-slate-200 dark:border-primary/10 flex justify-end gap-4">
+<button class="px-8 py-3 rounded-xl border border-slate-300 dark:border-slate-700 font-bold hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
+                    Discard Draft
+                </button>
+<button class="px-12 py-3 rounded-xl bg-primary text-white font-bold shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-all hover:scale-[1.02]">
+                    Initialize Final Twin
+                </button>
+</footer>
+</main>
+</div>
+</body></html>

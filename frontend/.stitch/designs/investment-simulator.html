@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SecureWealth Twin | Investment Simulator</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#ef4343",
+                "background-light": "#f8f6f6",
+                "background-dark": "#221010",
+                "accent-green": "#22c55e",
+                "accent-amber": "#f59e0b",
+              },
+              fontFamily: {
+                "display": ["Inter"]
+              },
+              borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+          },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+<div class="flex min-h-screen">
+<!-- Sidebar -->
+<aside class="w-64 border-r border-primary/10 bg-background-light dark:bg-background-dark flex flex-col shrink-0">
+<div class="p-6 flex items-center gap-3">
+<div class="bg-primary rounded-lg p-2 flex items-center justify-center text-white">
+<span class="material-symbols-outlined">shield_with_heart</span>
+</div>
+<div>
+<h1 class="text-lg font-bold leading-none">SecureWealth</h1>
+<p class="text-xs text-slate-500 dark:text-slate-400">Twin Simulator</p>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-2 mt-4">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10 text-primary" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/5 transition-colors" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="text-sm font-medium">Simulations</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/5 transition-colors" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="text-sm font-medium">Investments</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/5 transition-colors" href="#">
+<span class="material-symbols-outlined">security_update_warning</span>
+<span class="text-sm font-medium">Risk Analysis</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/5 transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</nav>
+<div class="p-4 border-t border-primary/10">
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-2.5 rounded-lg flex items-center justify-center gap-2 transition-all">
+<span class="material-symbols-outlined text-sm">add_circle</span>
+<span class="text-sm">New Simulation</span>
+</button>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col overflow-hidden">
+<!-- Header -->
+<header class="h-16 border-b border-primary/10 flex items-center justify-between px-8 bg-background-light dark:bg-background-dark/50 backdrop-blur-md">
+<div class="relative w-96">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+<input class="w-full bg-slate-100 dark:bg-primary/5 border-none rounded-lg pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary/50 outline-none" placeholder="Search simulations or assets..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-primary/5 text-slate-500 relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full"></span>
+</button>
+<div class="flex items-center gap-3 pl-4 border-l border-primary/10">
+<div class="text-right">
+<p class="text-xs font-bold leading-none">Alex Rivera</p>
+<p class="text-[10px] text-slate-500">Premium Account</p>
+</div>
+<div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center overflow-hidden border border-primary/30" data-alt="User profile avatar placeholder">
+<span class="material-symbols-outlined text-primary text-sm">person</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Dashboard Body -->
+<div class="flex-1 overflow-y-auto p-8 space-y-8">
+<div class="flex justify-between items-end">
+<div>
+<h2 class="text-3xl font-black tracking-tight">Portfolio Overview</h2>
+<p class="text-slate-500 dark:text-slate-400 mt-1">Simulated performance based on current market twin.</p>
+</div>
+<div class="flex gap-2">
+<span class="px-3 py-1 rounded bg-accent-green/10 text-accent-green text-xs font-bold flex items-center gap-1 border border-accent-green/20">
+<span class="material-symbols-outlined text-xs">check_circle</span> ALLOW
+                    </span>
+<span class="px-3 py-1 rounded bg-accent-amber/10 text-accent-amber text-xs font-bold flex items-center gap-1 border border-accent-amber/20">
+<span class="material-symbols-outlined text-xs">warning</span> WARN
+                    </span>
+<span class="px-3 py-1 rounded bg-primary/10 text-primary text-xs font-bold flex items-center gap-1 border border-primary/20">
+<span class="material-symbols-outlined text-xs">block</span> BLOCK
+                    </span>
+</div>
+</div>
+<!-- Stats Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-white dark:bg-primary/5 p-6 rounded-xl border border-primary/10">
+<div class="flex justify-between items-start mb-4">
+<p class="text-sm font-medium text-slate-500">Total Value</p>
+<span class="text-accent-green text-xs font-bold bg-accent-green/10 px-2 py-0.5 rounded">+12.4%</span>
+</div>
+<p class="text-3xl font-bold tracking-tight">$1,240,500.00</p>
+<p class="text-xs text-slate-400 mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">update</span> Updated 2 mins ago
+                    </p>
+</div>
+<div class="bg-white dark:bg-primary/5 p-6 rounded-xl border border-primary/10">
+<div class="flex justify-between items-start mb-4">
+<p class="text-sm font-medium text-slate-500">Risk Exposure</p>
+<span class="text-accent-amber text-xs font-bold bg-accent-amber/10 px-2 py-0.5 rounded">Moderate</span>
+</div>
+<p class="text-3xl font-bold tracking-tight">34.8%</p>
+<div class="w-full bg-slate-200 dark:bg-slate-700 h-1.5 rounded-full mt-4 overflow-hidden">
+<div class="bg-accent-amber h-full w-[34.8%]"></div>
+</div>
+</div>
+<div class="bg-white dark:bg-primary/5 p-6 rounded-xl border border-primary/10">
+<div class="flex justify-between items-start mb-4">
+<p class="text-sm font-medium text-slate-500">Active Simulations</p>
+<span class="text-primary text-xs font-bold bg-primary/10 px-2 py-0.5 rounded">3 Alerts</span>
+</div>
+<p class="text-3xl font-bold tracking-tight">12</p>
+<p class="text-xs text-slate-400 mt-2">8 Optimized, 4 High Volatility</p>
+</div>
+</div>
+<!-- Risk Score Indicator & Charts -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+<!-- Risk Analysis Card -->
+<div class="bg-white dark:bg-primary/5 p-6 rounded-xl border border-primary/10">
+<h3 class="font-bold text-lg mb-6">Security Twin Analysis</h3>
+<div class="space-y-6">
+<div class="flex items-center gap-4">
+<div class="relative w-24 h-24 shrink-0">
+<svg class="w-full h-full -rotate-90" viewbox="0 0 36 36">
+<path class="text-slate-200 dark:text-slate-800" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3"></path>
+<path class="text-primary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="25, 100" stroke-width="3"></path>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center flex-col">
+<span class="text-lg font-bold leading-none">25</span>
+<span class="text-[8px] font-bold text-slate-500">SCORE</span>
+</div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-1">
+<h4 class="font-bold text-sm">Portfolio Safety Index</h4>
+<span class="px-2 py-0.5 rounded bg-accent-green/10 text-accent-green text-[10px] font-bold">HEALTHY</span>
+</div>
+<p class="text-xs text-slate-500 leading-relaxed">Your current asset distribution mimics a low-volatility profile. No major liquidation risks detected in current simulation cycle.</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 pt-4 border-t border-primary/10">
+<div class="space-y-1">
+<p class="text-[10px] uppercase font-bold text-slate-400">Market Stress Test</p>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-accent-green"></div>
+<span class="text-sm font-medium">Passed</span>
+</div>
+</div>
+<div class="space-y-1">
+<p class="text-[10px] uppercase font-bold text-slate-400">Liquidity Rating</p>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-accent-amber"></div>
+<span class="text-sm font-medium">High</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Active Assets / Decision Log -->
+<div class="bg-white dark:bg-primary/5 p-6 rounded-xl border border-primary/10">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-bold text-lg">Simulation Decisions</h3>
+<button class="text-primary text-xs font-bold hover:underline">View All</button>
+</div>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-3 rounded-lg bg-slate-50 dark:bg-primary/5 border border-primary/5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-sm">currency_bitcoin</span>
+</div>
+<div>
+<p class="text-sm font-bold">BTC Strategy #4</p>
+<p class="text-[10px] text-slate-500">Trend Reversal Pattern</p>
+</div>
+</div>
+<span class="px-2 py-1 rounded bg-accent-green/10 text-accent-green text-[10px] font-black border border-accent-green/20">ALLOW</span>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg bg-slate-50 dark:bg-primary/5 border border-primary/5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-sm">monitoring</span>
+</div>
+<div>
+<p class="text-sm font-bold">Leveraged SPY</p>
+<p class="text-[10px] text-slate-500">Margin levels at 70%</p>
+</div>
+</div>
+<span class="px-2 py-1 rounded bg-accent-amber/10 text-accent-amber text-[10px] font-black border border-accent-amber/20">WARN</span>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg bg-slate-50 dark:bg-primary/5 border border-primary/5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-sm">data_exploration</span>
+</div>
+<div>
+<p class="text-sm font-bold">Emerging Tech ETF</p>
+<p class="text-[10px] text-slate-500">High Risk Profile Detected</p>
+</div>
+</div>
+<span class="px-2 py-1 rounded bg-primary/10 text-primary text-[10px] font-black border border-primary/20">BLOCK</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Simulation Feed -->
+<div class="bg-white dark:bg-primary/5 rounded-xl border border-primary/10 overflow-hidden">
+<div class="p-6 border-b border-primary/10 flex justify-between items-center">
+<h3 class="font-bold text-lg">Active Market Twins</h3>
+<div class="flex gap-2">
+<button class="p-1.5 rounded hover:bg-primary/10"><span class="material-symbols-outlined text-lg">filter_list</span></button>
+<button class="p-1.5 rounded hover:bg-primary/10"><span class="material-symbols-outlined text-lg">refresh</span></button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="text-xs uppercase text-slate-400 bg-slate-50/50 dark:bg-primary/5">
+<th class="px-6 py-4 font-bold">Simulator Name</th>
+<th class="px-6 py-4 font-bold">Current Yield</th>
+<th class="px-6 py-4 font-bold">Volatility Index</th>
+<th class="px-6 py-4 font-bold">Status</th>
+<th class="px-6 py-4 font-bold">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-primary/5">
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-accent-green"></div>
+<span class="text-sm font-bold">Aggressive Alpha</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-accent-green font-medium">+18.2%</td>
+<td class="px-6 py-4 text-sm">0.74 (High)</td>
+<td class="px-6 py-4">
+<span class="text-[10px] font-bold bg-primary/10 text-primary px-2 py-0.5 rounded border border-primary/20">BLOCK</span>
+</td>
+<td class="px-6 py-4">
+<button class="text-xs font-bold bg-primary/10 hover:bg-primary/20 text-primary px-3 py-1.5 rounded transition-colors">Adjust</button>
+</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-accent-amber"></div>
+<span class="text-sm font-bold">Conservative Beta</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-500 font-medium">+4.1%</td>
+<td class="px-6 py-4 text-sm">0.12 (Low)</td>
+<td class="px-6 py-4">
+<span class="text-[10px] font-bold bg-accent-green/10 text-accent-green px-2 py-0.5 rounded border border-accent-green/20">ALLOW</span>
+</td>
+<td class="px-6 py-4">
+<button class="text-xs font-bold bg-primary/10 hover:bg-primary/20 text-primary px-3 py-1.5 rounded transition-colors">Adjust</button>
+</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary/50"></div>
+<span class="text-sm font-bold">Hedged Delta</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-accent-green font-medium">+7.4%</td>
+<td class="px-6 py-4 text-sm">0.31 (Mid)</td>
+<td class="px-6 py-4">
+<span class="text-[10px] font-bold bg-accent-amber/10 text-accent-amber px-2 py-0.5 rounded border border-accent-amber/20">WARN</span>
+</td>
+<td class="px-6 py-4">
+<button class="text-xs font-bold bg-primary/10 hover:bg-primary/20 text-primary px-3 py-1.5 rounded transition-colors">Adjust</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

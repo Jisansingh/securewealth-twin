@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SecureWealth Twin Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ef4343",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#0a0505",
+                        "card-dark": "#110808",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0505;
+        }
+        .custom-glow-red {
+            box-shadow: 0 0 15px rgba(239, 67, 67, 0.2);
+        }
+        .custom-glow-green {
+            box-shadow: 0 0 15px rgba(34, 197, 94, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased overflow-x-hidden">
+<div class="flex min-h-screen">
+<!-- Sidebar Navigation -->
+<aside class="w-72 border-r border-slate-200 dark:border-primary/10 bg-white dark:bg-card-dark flex flex-col fixed h-full z-20">
+<div class="p-6 flex items-center gap-3">
+<div class="bg-primary rounded-lg p-2 flex items-center justify-center text-white">
+<span class="material-symbols-outlined">shield_with_heart</span>
+</div>
+<div>
+<h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100">SecureWealth</h1>
+<p class="text-xs text-slate-500 dark:text-primary/60 font-medium">Premium Security</p>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-1 mt-4">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-primary/10 text-primary font-semibold" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-primary/5 transition-colors" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span>Accounts</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-primary/5 transition-colors" href="#">
+<span class="material-symbols-outlined">verified_user</span>
+<span>Security</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-primary/5 transition-colors" href="#">
+<span class="material-symbols-outlined">track_changes</span>
+<span>Savings Goals</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-primary/5 transition-colors" href="#">
+<span class="material-symbols-outlined">notification_important</span>
+<span class="flex-1">Fraud Alerts</span>
+<span class="bg-primary text-white text-[10px] px-1.5 py-0.5 rounded-full font-bold">3</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-primary/5 transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+<div class="p-6 border-t border-slate-200 dark:border-primary/10">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-slate-200 dark:bg-primary/20 bg-cover bg-center" data-alt="User profile photo of a professional male" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAz9Bk3VEf0Da_fKt8_FApnjc4-KnTBN4-nTWTj_YlX9wJp7_OSml_aEzOSTttGLHMBI9X1x3WK1M-KVqu0AYXRp3s8fgPFeN06-67eqCgl5YeuVdac9asvzvG44APhZTeo7I6LWe04CGU0jFhPRqK8lv2ul3g-AGt0YGyTyMr-O1qk3rI1hgKvzafjClHJueEBjcraVT4lAjlotSLmmlBAi2KmAXeUlzgJfMjeg5BZGM5xaBy2p6pZN5esiO7MM7_qDkL47FAmJCE')"></div>
+<div>
+<p class="text-sm font-bold text-slate-900 dark:text-slate-100">Alexander Thorne</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Pro Member</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 ml-72 min-h-screen">
+<!-- Header -->
+<header class="h-16 border-b border-slate-200 dark:border-primary/10 flex items-center justify-between px-8 bg-white/50 dark:bg-background-dark/50 backdrop-blur-md sticky top-0 z-10">
+<div class="flex items-center gap-4">
+<h2 class="text-lg font-bold">Twin Dashboard Overview</h2>
+<div class="relative w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+<input class="w-full bg-slate-100 dark:bg-primary/5 border-none rounded-lg pl-10 text-sm py-2 focus:ring-1 focus:ring-primary/50 text-slate-900 dark:text-slate-100" placeholder="Search transactions, assets..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-lg bg-slate-100 dark:bg-primary/10 text-slate-600 dark:text-slate-300 relative">
+<span class="material-symbols-outlined text-[20px]">chat_bubble</span>
+</button>
+<button class="p-2 rounded-lg bg-slate-100 dark:bg-primary/10 text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<div class="h-8 w-px bg-slate-200 dark:bg-primary/10"></div>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg text-sm font-semibold transition-transform hover:scale-[1.02]">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>New Transfer</span>
+</button>
+</div>
+</header>
+<div class="p-8 space-y-8">
+<!-- Welcome & Top Stats -->
+<div class="flex flex-wrap items-end justify-between gap-4">
+<div>
+<p class="text-primary font-medium text-sm">Summary Status</p>
+<h1 class="text-4xl font-black text-slate-900 dark:text-slate-100 tracking-tight">Wealth Overview</h1>
+<p class="text-slate-500 dark:text-slate-400 mt-1">Real-time security monitoring and financial performance.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-4 py-2 rounded-lg border border-slate-200 dark:border-primary/20 text-sm font-semibold hover:bg-slate-50 dark:hover:bg-primary/5 transition-colors">
+                            Manage Assets
+                        </button>
+<button class="px-4 py-2 rounded-lg bg-slate-100 dark:bg-primary/10 text-sm font-semibold text-slate-900 dark:text-slate-100 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">download</span>
+                            Generate Report
+                        </button>
+</div>
+</div>
+<!-- Metrics Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="p-6 bg-white dark:bg-card-dark border border-slate-200 dark:border-primary/10 rounded-xl">
+<div class="flex justify-between items-start mb-4">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Total Balance</p>
+<span class="material-symbols-outlined text-primary">account_balance</span>
+</div>
+<h3 class="text-2xl font-bold">$142,500.00</h3>
+<div class="flex items-center gap-1.5 mt-2">
+<span class="text-[#22C55E] text-xs font-bold bg-[#22C55E]/10 px-1.5 py-0.5 rounded flex items-center">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> 2.4%
+                            </span>
+<span class="text-slate-400 text-[10px]">vs last month</span>
+</div>
+</div>
+<div class="p-6 bg-white dark:bg-card-dark border border-slate-200 dark:border-primary/10 rounded-xl custom-glow-green">
+<div class="flex justify-between items-start mb-4">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Savings Health</p>
+<span class="material-symbols-outlined text-[#22C55E]">ecg_heart</span>
+</div>
+<h3 class="text-2xl font-bold text-[#22C55E]">Excellent</h3>
+<div class="flex items-center gap-1.5 mt-2">
+<span class="text-[#22C55E] text-xs font-bold">+12% Target</span>
+</div>
+</div>
+<div class="p-6 bg-white dark:bg-card-dark border border-slate-200 dark:border-primary/10 rounded-xl custom-glow-red border-primary/20">
+<div class="flex justify-between items-start mb-4">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Active Risks</p>
+<span class="material-symbols-outlined text-primary">gpp_maybe</span>
+</div>
+<h3 class="text-2xl font-bold text-slate-900 dark:text-slate-100">0 High</h3>
+<div class="flex items-center gap-1.5 mt-2">
+<span class="text-primary text-xs font-bold">-100% Risk</span>
+<span class="text-slate-400 text-[10px]">Threat Level: Nil</span>
+</div>
+</div>
+<div class="p-6 bg-white dark:bg-card-dark border border-slate-200 dark:border-primary/10 rounded-xl">
+<div class="flex justify-between items-start mb-4">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Investment Yield</p>
+<span class="material-symbols-outlined text-amber-500">payments</span>
+</div>
+<h3 class="text-2xl font-bold">$12,402.15</h3>
+<div class="flex items-center gap-1.5 mt-2 text-slate-400 text-xs">
+<span>Projected Annual</span>
+</div>
+</div>
+</div>
+<!-- Second Row: Fraud Alerts & Progress -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Fraud Alerts Section -->
+<div class="lg:col-span-1 space-y-4">
+<div class="flex items-center justify-between">
+<h2 class="text-lg font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">crisis_alert</span>
+                                Security Alerts
+                            </h2>
+<button class="text-xs text-primary font-bold">View History</button>
+</div>
+<div class="space-y-3">
+<div class="p-4 bg-primary/5 border-l-4 border-primary rounded-r-lg">
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-primary">warning</span>
+<div>
+<p class="text-sm font-bold text-slate-100">Unusual Login Attempt</p>
+<p class="text-xs text-slate-400">San Francisco, CA • IP: 192.168.1.1</p>
+<div class="mt-2 flex gap-2">
+<button class="bg-primary text-white text-[10px] px-2 py-1 rounded font-bold">Block IP</button>
+<button class="bg-white/10 text-white text-[10px] px-2 py-1 rounded font-bold">It's me</button>
+</div>
+</div>
+</div>
+</div>
+<div class="p-4 bg-slate-100 dark:bg-primary/5 rounded-lg opacity-60">
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-slate-400">verified</span>
+<div>
+<p class="text-sm font-bold">2FA Verified</p>
+<p class="text-xs text-slate-400">Transaction #9182 confirmed</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Savings Goals Section -->
+<div class="lg:col-span-2 space-y-4 bg-white dark:bg-card-dark p-6 rounded-xl border border-slate-200 dark:border-primary/10">
+<div class="flex items-center justify-between mb-2">
+<h2 class="text-lg font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-amber-500">ads_click</span>
+                                Active Savings Goals
+                            </h2>
+<button class="text-xs text-slate-400 font-medium">Add New Goal</button>
+</div>
+<div class="space-y-6 pt-4">
+<div>
+<div class="flex justify-between items-end mb-2">
+<div>
+<p class="text-sm font-bold">Real Estate Fund</p>
+<p class="text-xs text-slate-400">Target: $250,000</p>
+</div>
+<p class="text-sm font-black text-amber-500">65%</p>
+</div>
+<div class="h-2 w-full bg-slate-100 dark:bg-primary/10 rounded-full overflow-hidden">
+<div class="h-full bg-amber-500 rounded-full w-[65%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between items-end mb-2">
+<div>
+<p class="text-sm font-bold">Cyber Security Setup</p>
+<p class="text-xs text-slate-400">Target: $15,000</p>
+</div>
+<p class="text-sm font-black text-amber-500">88%</p>
+</div>
+<div class="h-2 w-full bg-slate-100 dark:bg-primary/10 rounded-full overflow-hidden">
+<div class="h-full bg-amber-500 rounded-full w-[88%] shadow-[0_0_8px_rgba(245,158,11,0.5)]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between items-end mb-2">
+<div>
+<p class="text-sm font-bold">Retirement Portfolio</p>
+<p class="text-xs text-slate-400">Target: $1,200,000</p>
+</div>
+<p class="text-sm font-black text-amber-500">12%</p>
+</div>
+<div class="h-2 w-full bg-slate-100 dark:bg-primary/10 rounded-full overflow-hidden">
+<div class="h-full bg-amber-500 rounded-full w-[12%]"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Third Row: Asset Distribution & Recent Activity -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<!-- Recent Activity -->
+<div class="bg-white dark:bg-card-dark p-6 rounded-xl border border-slate-200 dark:border-primary/10">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-lg font-bold">Recent Transactions</h2>
+<button class="text-xs text-primary font-bold">View All</button>
+</div>
+<div class="space-y-4">
+<div class="flex items-center justify-between py-2">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">shopping_cart</span>
+</div>
+<div>
+<p class="text-sm font-bold">Apple Store</p>
+<p class="text-xs text-slate-500">Oct 24, 2023 • Electronics</p>
+</div>
+</div>
+<p class="text-sm font-bold">-$1,299.00</p>
+</div>
+<div class="flex items-center justify-between py-2">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-lg bg-[#22C55E]/10 flex items-center justify-center text-[#22C55E]">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<div>
+<p class="text-sm font-bold">Salary Deposit</p>
+<p class="text-xs text-slate-500">Oct 22, 2023 • Income</p>
+</div>
+</div>
+<p class="text-sm font-bold text-[#22C55E]">+$8,500.00</p>
+</div>
+<div class="flex items-center justify-between py-2">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-500">
+<span class="material-symbols-outlined">auto_graph</span>
+</div>
+<div>
+<p class="text-sm font-bold">Stock Dividend</p>
+<p class="text-xs text-slate-500">Oct 20, 2023 • Investment</p>
+</div>
+</div>
+<p class="text-sm font-bold text-[#22C55E]">+$450.25</p>
+</div>
+</div>
+</div>
+<!-- Wealth Distribution Visual -->
+<div class="bg-white dark:bg-card-dark p-6 rounded-xl border border-slate-200 dark:border-primary/10">
+<h2 class="text-lg font-bold mb-6">Wealth Distribution</h2>
+<div class="flex items-center gap-8">
+<div class="relative w-40 h-40 flex items-center justify-center">
+<svg class="w-full h-full -rotate-90">
+<circle class="text-slate-100 dark:text-primary/10" cx="80" cy="80" fill="transparent" r="70" stroke="currentColor" stroke-width="12"></circle>
+<circle class="text-primary" cx="80" cy="80" fill="transparent" r="70" stroke="currentColor" stroke-dasharray="440" stroke-dashoffset="110" stroke-width="12"></circle>
+<circle class="text-amber-500" cx="80" cy="80" fill="transparent" r="70" stroke="currentColor" stroke-dasharray="440" stroke-dashoffset="330" stroke-width="12"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<p class="text-2xl font-black">78%</p>
+<p class="text-[10px] text-slate-400 uppercase tracking-widest font-bold">Allocated</p>
+</div>
+</div>
+<div class="flex-1 space-y-4">
+<div class="flex items-center gap-3">
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<div class="flex-1">
+<div class="flex justify-between text-xs font-bold mb-1">
+<span>Liquid Assets</span>
+<span>45%</span>
+</div>
+<div class="h-1 bg-primary/10 rounded-full"><div class="h-full bg-primary w-[45%] rounded-full"></div></div>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-3 h-3 rounded-full bg-amber-500"></div>
+<div class="flex-1">
+<div class="flex justify-between text-xs font-bold mb-1">
+<span>Investments</span>
+<span>33%</span>
+</div>
+<div class="h-1 bg-amber-500/10 rounded-full"><div class="h-full bg-amber-500 w-[33%] rounded-full"></div></div>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-3 h-3 rounded-full bg-slate-400"></div>
+<div class="flex-1">
+<div class="flex justify-between text-xs font-bold mb-1">
+<span>Savings</span>
+<span>22%</span>
+</div>
+<div class="h-1 bg-slate-400/10 rounded-full"><div class="h-full bg-slate-400 w-[22%] rounded-full"></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Global Risk Indicator (Footer Floating) -->
+<div class="fixed bottom-6 right-8">
+<div class="bg-white dark:bg-card-dark border border-[#22C55E]/20 px-6 py-3 rounded-full shadow-2xl flex items-center gap-3 custom-glow-green">
+<div class="w-2.5 h-2.5 bg-[#22C55E] rounded-full animate-pulse"></div>
+<p class="text-xs font-black tracking-tight flex items-center gap-2">
+<span class="text-[#22C55E] uppercase">System Status: Secure</span>
+<span class="text-slate-400">|</span>
+<span class="text-slate-500">Last scanned: 2m ago</span>
+</p>
+</div>
+</div>
+</main>
+</div>
+</body></html>
