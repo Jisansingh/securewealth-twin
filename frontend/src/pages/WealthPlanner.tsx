@@ -1,24 +1,81 @@
 import { useState } from 'react';
 import api from '../api';
 
+interface GoalResult {
+    goal: string;
+    target_amount: number;
+    future_value: number;
+    goal_status: string;
+    recommended_monthly_investment?: number;
+}
+
+interface InvestmentResult {
+    decision: string;
+    message: string;
+    risk_score: number;
+}
+
+const RiskGauge = ({ score }: { score: number }) => {
+    let color = "#22c55e";
+    let label = "SAFE";
+    if (score >= 30 && score < 60) {
+        color = "#f59e0b";
+        label = "WARNING";
+    } else if (score >= 60) {
+        color = "#ef4444";
+        label = "HIGH RISK";
+    }
+    const radius = 60;
+    const circumference = 2 * Math.PI * radius;
+    const offset = circumference - (score / 100) * circumference;
+
+    return (
+        <div className="bg-white dark:bg-card-dark p-6 rounded-xl border border-slate-200 dark:border-primary/10 flex flex-col items-center justify-center col-span-1 md:col-span-3 lg:col-span-1">
+            <h3 className="text-lg font-bold mb-4 text-slate-800 dark:text-slate-100 flex items-center gap-2">
+                <span className="material-symbols-outlined text-amber-500">health_and_safety</span>
+                Fraud Risk Score
+            </h3>
+            <div className="relative flex items-center justify-center">
+                <svg className="transform -rotate-90 w-40 h-40">
+                    <circle cx="80" cy="80" r={radius} stroke="currentColor" strokeWidth="12" fill="transparent" className="text-slate-100 dark:text-slate-800/50 cursor-pointer" />
+                    <circle
+                        cx="80"
+                        cy="80"
+                        r={radius}
+                        stroke={color}
+                        strokeWidth="12"
+                        strokeLinecap="round"
+                        fill="transparent"
+                        strokeDasharray={circumference}
+                        strokeDashoffset={offset}
+                        className="transition-all duration-1000 ease-out"
+                    />
+                </svg>
+                <div className="absolute flex flex-col items-center justify-center text-center">
+                    <span className="text-4xl font-black" style={{ color }}>{score}</span>
+                </div>
+            </div>
+            <span className="text-sm font-bold mt-4" style={{ color }}>{label}</span>
+        </div>
+    );
+};
+
 export default function WealthPlanner() {
     const [goalLoading, setGoalLoading] = useState(false);
-    const [goalResult, setGoalResult] = useState<any>(null);
+    const [goalResult, setGoalResult] = useState<GoalResult | null>(null);
 
     const [investmentLoading, setInvestmentLoading] = useState(false);
-    const [investmentResult, setInvestmentResult] = useState<any>(null);
+    const [investmentResult, setInvestmentResult] = useState<InvestmentResult | null>(null);
 
     const simulateGoal = async () => {
         try {
             setGoalLoading(true);
-            const res = await api.post('/goal-simulation', null, {
-                params: {
-                    user_name: 'Alex Rivera',
-                    goal_name: 'Retirement Fund',
-                    target_amount: 1250000,
-                    years: 20,
-                    monthly_investment: 3200
-                }
+            const res = await api.post('/goal-simulation', {
+                user_name: 'Alex Rivera',
+                goal_name: 'Retirement Fund',
+                target_amount: 1250000,
+                years: 20,
+                monthly_investment: 3200
             });
             setGoalResult(res.data);
         } catch (err) {
@@ -32,13 +89,11 @@ export default function WealthPlanner() {
     const simulateInvestment = async () => {
         try {
             setInvestmentLoading(true);
-            const res = await api.post('/simulate-investment', null, {
-                params: {
-                    user_name: 'Jisan',
-                    investment_amount: 200000,
-                    new_device: true,
-                    otp_retry: true
-                }
+            const res = await api.post('/simulate-investment', {
+                user_name: 'Jisan',
+                investment_amount: 200000,
+                new_device: true,
+                otp_retry: true
             });
             setInvestmentResult(res.data);
         } catch (err) {
@@ -48,6 +103,7 @@ export default function WealthPlanner() {
             setInvestmentLoading(false);
         }
     };
+
 
     return (
         <div className="p-8 max-w-6xl mx-auto w-full flex flex-col gap-8">
@@ -92,15 +148,15 @@ export default function WealthPlanner() {
 
             {/* Investment Simulation Results */}
             {investmentResult && (
-                <div className="bg-amber-500/10 border border-amber-500 p-6 rounded-xl flex items-center justify-between animate-fade-in">
-                    <div>
-                        <h3 className="text-xl font-bold text-slate-100">Investment Status: <span className="text-amber-500">{investmentResult.decision}</span></h3>
-                        <p className="text-sm text-slate-400">{investmentResult.message}</p>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 animate-fade-in">
+                    <div className="bg-amber-500/10 border border-amber-500 p-6 rounded-xl flex items-center justify-between col-span-1 md:col-span-2">
+                        <div>
+                            <h3 className="text-xl font-bold text-slate-100">Investment Status: <span className="text-amber-500">{investmentResult.decision}</span></h3>
+                            <p className="text-sm text-slate-400 mt-2">{investmentResult.message}</p>
+                            <p className="text-xs font-bold text-slate-400 mt-4 uppercase">Security Check Completed</p>
+                        </div>
                     </div>
-                    <div className="text-right">
-                        <p className="text-2xl font-black text-amber-500">Risk: {investmentResult.risk_score}</p>
-                        <p className="text-xs uppercase font-bold text-slate-400">Security Check Passed</p>
-                    </div>
+                    <RiskGauge score={investmentResult.risk_score} />
                 </div>
             )}
 

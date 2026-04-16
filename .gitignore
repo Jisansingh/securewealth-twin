@@ -1,0 +1,58 @@
+# ─────────────────────────────────────────────────
+# SecureWealth Twin — .gitignore
+# Full-stack: Python/FastAPI + React/Vite + Node.js
+# ─────────────────────────────────────────────────
+
+# ── Python ──────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+*.egg
+dist/
+build/
+*.whl
+
+# Virtual environments
+venv/
+.venv/
+env/
+.env/
+
+# ── Environment variables ───────────────────────
+.env
+.env.local
+.env.*.local
+
+# ── Node.js / React / Vite ─────────────────────
+node_modules/
+dist/
+*.tsbuildinfo
+
+# ── Logs ────────────────────────────────────────
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ── IDE / Editor ────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ── Testing / Coverage ─────────────────────────
+.coverage
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+
+# ── Misc ────────────────────────────────────────
+*.bak
+*.tmp

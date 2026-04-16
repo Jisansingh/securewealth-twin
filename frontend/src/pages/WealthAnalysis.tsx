@@ -1,33 +1,13 @@
-import { useEffect, useState } from 'react';
-import api from '../api';
+import { useUsers } from '../api/hooks';
 
 interface User {
-    id: string;
-    name: string;
-    email: string;
-    created_at?: string;
+    username: string; // Updated to match backend response
 }
 
 export default function WealthAnalysis() {
-    const [users, setUsers] = useState<User[]>([]);
-    const [loading, setLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string | null>(null);
+    const { data: users = [], isLoading: loading, error: queryError } = useUsers();
+    const error = queryError ? 'Failed to fetch user data' : null;
 
-    useEffect(() => {
-        const fetchUsers = async () => {
-            try {
-                setLoading(true);
-                const res = await api.get('/users');
-                setUsers(res.data);
-            } catch (err) {
-                setError('Failed to fetch user data');
-                console.error(err);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchUsers();
-    }, []);
 
     return (
         <div className="p-8 space-y-8">

@@ -1,38 +1,60 @@
-import { useEffect, useState } from 'react';
-import api from '../api';
+import { useState } from 'react';
+import { useWealthAnalysis } from '../api/hooks';
+
+import { ResponsiveContainer, LineChart, XAxis, YAxis, Tooltip, Line } from 'recharts';
 
 interface WealthAnalysisData {
+    income?: number;
+    expenses?: number;
     savings_rate: string;
     advice: string;
 }
 
+function WealthChart({ data }: { data: any[] }) {
+    return (
+        <div className="bg-white dark:bg-card-dark p-6 rounded-xl border border-slate-200 dark:border-primary/10 w-full animate-fade-in">
+            <h3 className="text-xl font-bold mb-6 text-slate-800 dark:text-slate-100 flex items-center gap-2">
+                <span className="material-symbols-outlined text-[#22c55e]">trending_up</span>
+                Wealth Growth Projection
+            </h3>
+            <div className="h-[300px] w-full">
+                <ResponsiveContainer width="100%" height="100%">
+                    <LineChart data={data}>
+                        <XAxis dataKey="month" stroke="#94a3b8" fontSize={12} tickLine={false} axisLine={false} />
+                        <YAxis stroke="#94a3b8" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(value) => `$${value}`} />
+                        <Tooltip 
+                            contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px', color: '#f8fafc' }}
+                            itemStyle={{ color: '#22c55e' }}
+                            formatter={(value: any) => [`$${value.toLocaleString()}`, "Savings"]}
+                        />
+                        <Line type="monotone" dataKey="savings" stroke="#22c55e" strokeWidth={4} dot={{ r: 4, fill: '#22c55e', strokeWidth: 2, stroke: '#ffffff' }} activeDot={{ r: 6 }} />
+                    </LineChart>
+                </ResponsiveContainer>
+            </div>
+        </div>
+    );
+}
+
 export default function Dashboard() {
-    const [wealthData, setWealthData] = useState<WealthAnalysisData | null>(null);
-    const [loading, setLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string | null>(null);
+    const { data: wealthData, isLoading: loading, error: queryError } = useWealthAnalysis(80000, 50000);
+    const error = queryError ? 'Failed to fetch wealth analysis data.' : null;
     const [modal, setModal] = useState<string | null>(null);
     const [alertMessage, setAlertMessage] = useState<string | null>(null);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                setLoading(true);
-                const response = await api.get('/wealth-analysis', {
-                    params: {
-                        income: 80000,
-                        expenses: 50000
-                    }
-                });
-                setWealthData(response.data);
-            } catch (err) {
-                setError('Failed to fetch wealth analysis data.');
-                console.error(err);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchData();
-    }, []);
+
+    const generateChartData = () => {
+        const income = wealthData?.income || 80000;
+        const expenses = wealthData?.expenses || 50000;
+        const monthlySavings = (income - expenses) / 12;
+        const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        let cumulative = 0;
+        return months.map(m => {
+            cumulative += monthlySavings;
+            return { month: m, savings: Math.round(cumulative) };
+        });
+    };
+
+    const chartData = wealthData ? generateChartData() : [];
 
     return (
         <>
@@ -104,7 +126,9 @@ export default function Dashboard() {
                         ) : error ? (
                             <h3 className="text-sm font-bold text-primary">{error}</h3>
                         ) : (
-                            <h3 className="text-2xl font-bold text-[#22C55E]">{wealthData?.savings_rate}</h3>
+                            <h3 className="text-2xl font-bold text-[#22C55E]">
+                                {wealthData ? `${(Number(wealthData.savings_rate) * 100).toFixed(0)}%` : '0%'}
+                            </h3>
                         )}
                         <div className="flex items-center gap-1.5 mt-2">
                             <span className="text-[#22C55E] text-xs font-bold">Target met</span>
@@ -140,6 +164,13 @@ export default function Dashboard() {
                         </div>
                     </div>
                 </div>
+
+                {/* Wealth Growth Chart Section */}
+                {wealthData && (
+                    <div className="w-full">
+                        <WealthChart data={chartData} />
+                    </div>
+                )}
 
                 {/* Second Row: Fraud Alerts & Progress */}
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

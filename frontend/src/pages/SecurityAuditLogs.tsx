@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import api from '../api';
+import { useAuditLogs } from '../api/hooks';
 
 interface AuditLog {
     user: string;
@@ -11,25 +10,9 @@ interface AuditLog {
 }
 
 export default function SecurityAuditLogs() {
-    const [logs, setLogs] = useState<AuditLog[]>([]);
-    const [loading, setLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string | null>(null);
+    const { data: logs = [], isLoading: loading, error: queryError } = useAuditLogs();
+    const error = queryError ? 'Failed to fetch security audit logs' : null;
 
-    useEffect(() => {
-        const fetchLogs = async () => {
-            try {
-                setLoading(true);
-                const res = await api.get('/audit-logs');
-                setLogs(res.data.logs);
-            } catch (err) {
-                setError('Failed to fetch security audit logs');
-                console.error(err);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchLogs();
-    }, []);
 
     const exportCSV = () => {
         if (!logs.length) return;
